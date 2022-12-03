@@ -13,15 +13,21 @@
         </div>
 
         <div >
-            <form class="flex align-center justify-center flex-col" @submit.prevent="createUser">
+            <form class="flex align-center justify-center flex-col m-container" @submit.prevent="createUser">
                 <div>
-                    <input type="text" placeholder="Email" v-model="email" />
+                    <input
+                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    type="text" placeholder="Email" v-model="email" />
                 </div>
                 <div>
-                    <input type="password" placeholder="Пароль" v-model="password" />
+                    <input 
+                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    type="password" placeholder="Пароль" v-model="password" />
                 </div>
                 <div>
-                    <input type="password" placeholder="Подтверждение пароля" v-model="rePassword" />
+                    <input 
+                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    type="password" placeholder="Подтверждение пароля" v-model="rePassword" />
                 </div>
                 <div v-if="errors.length">
 

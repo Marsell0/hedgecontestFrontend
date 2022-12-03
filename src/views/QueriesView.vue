@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-16">
         <green-button 
             @click="getPosts" 
             class="bg-main_green hover:bg-hover_m_green"

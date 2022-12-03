@@ -11,6 +11,12 @@ const routes = [
     name: 'queries',
     meta: {layout: 'base'},
     component: () => import('../views/QueriesView.vue')
+  },
+  {
+    path: '/create_query',
+    name: 'create_query',
+    meta: {layout: 'base'},
+    component: () => import('../views/CreateQueryView.vue')
   }
 ]
 

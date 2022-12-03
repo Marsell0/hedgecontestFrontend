@@ -1,7 +1,7 @@
 <template>
-    <div class=" fixed top-modal shadow-modal bg-white z-100">
-        <div class="flex align-center justify-center">
-            <span>
+    <div class=" mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid">
+        <div class="flex align-center justify-center mt-modal">
+            <span class="text-modalHeader">
                 Вход
             </span>
 
@@ -13,12 +13,16 @@
         </div>
 
         <div >
-            <form class="flex align-center justify-center flex-col" @submit.prevent="loginUser">
+            <form class="flex align-center justify-center flex-col m-container" @submit.prevent="loginUser">
                 <div>
-                    <input type="text" placeholder="Email" v-model="email" />
+                    <input 
+                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    type="text" placeholder="Email" v-model="email" />
                 </div>
                 <div>
-                    <input type="password" placeholder="Пароль" v-model="password" />
+                    <input 
+                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    type="password" placeholder="Пароль" v-model="password" />
                 </div>
                 <div v-if="errors.length">
                     <ul>
@@ -37,6 +41,7 @@
 <script>
     import GreenButton from './GreenButton.vue';
     import axios from 'axios';
+    import data from '@/global.js'
 
     export default {
         components:{
@@ -44,6 +49,7 @@
         },
         data(){
             return{
+                resData: [],
                 email: null,
                 password: null,
                 userData: [],
@@ -51,6 +57,14 @@
             }
         },
         methods:{
+            parseJwt (token) {
+                var base64Url = token.split('.')[1];
+                var base64 = decodeURIComponent(atob(base64Url).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+
+                 return JSON.parse(base64);
+            },
             closeLog() {
                 this.$emit('closeLog')
             },
@@ -75,9 +89,15 @@
                         "password": this.password
                         }
                     const res = await axios.post("http://176.28.64.201:3437/login", this.userData)
+                    this.resData = res.data
                     if (res.data != null){
-                        console.log("success");
-                        this.closeLog();
+                        data = this.resData.access_token
+                        //data = ((this.parseJwt(data).sub).split(':'))[1]
+                        document.cookie = `role=${((this.parseJwt(data).sub).split(':'))[1]}`
+
+                        document.cookie = `isAuth=1`
+
+                        this.closeLog()
                         return true;
                     }
                     else{

@@ -8,10 +8,11 @@ module.exports = {
       colors: {
         main_green: '#717D70',
         hover_m_green: '#717D80',
-        bg_color: '#F5F5F5'
+        bg_color: '#F5F5F5',
+        border_input: '#b3b3b3'
       },
       maxHeight:{
-        header: '60px',
+        header: '70px',
       },
       maxWidth:{
         container: '1584px'
@@ -27,13 +28,19 @@ module.exports = {
         modal: '0px 0px 15px 0px'
       },
       width:{
-        modal: '560px'
+        modal: '560px',
+        input: '487px'
       },
       height:{
-        modal: '670px'
+        modal: '670px',
+        input: '30px'
       },
       fontSize:{
         modalHeader: '50px'
+      },
+      flex:{
+        main: '1 0 auto',
+        footer: '0 0 auto'
       }
     },
   },
