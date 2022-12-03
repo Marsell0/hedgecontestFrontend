@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1 class="text-3xl font-bold underline">Queries</h1>
         <green-button 
             @click="getPosts" 
             class="bg-main_green hover:bg-hover_m_green"

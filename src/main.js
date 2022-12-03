@@ -5,5 +5,6 @@ import './index.css'
 import router from './router'
 import store from './store'
 import './assets/tailwind.css'
+//import 'material-design-icon-iconfont'
 
 createApp(App).use(store).use(router).mount('#app')

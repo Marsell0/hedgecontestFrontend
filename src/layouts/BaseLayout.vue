@@ -1,20 +1,34 @@
 <template>
-  <div class="root">
+  <div class="root bg-bg_color">
+
+    <login-form 
+    v-if="isLogVisible"
+    @closeLog="closeLog" 
+    />
+
+    <register-form 
+    v-if="isRegVisible"
+    @closeReg="closeReg" 
+    />
+
     <header class="absolute w-screen top-0 left-0 z-100 px-0 py-15 bg-main_green flex max-h-header">
       <div class="root">
         <nav>
           <ul class="flex justify-between align-center text-white">
             <li class="mr-80"><router-link to="/">Home</router-link></li>
-            <li class="mr-80"><router-link to="/login">Login</router-link></li>
             <li><router-link to="/queries">Queries</router-link></li>  
           </ul>
         </nav>
       
         <div>
-          <white-button>
+          <white-button
+           @click="showLogModal"
+          >
             Войти
           </white-button>
-          <green-button>
+          <green-button
+           @click="showRegModal"
+          >
             Регистрация
           </green-button>
         </div>
@@ -36,10 +50,33 @@
 <script>
   import GreenButton from '@/components/GreenButton.vue';
   import WhiteButton from '@/components/WhiteButton.vue'
+  import RegisterForm from '@/components/RegisterForm.vue';
+  import LoginForm from '@/components/LoginForm.vue';
 
   export default {
+    data(){
+      return{
+        isRegVisible: false,
+        isLogVisible: false,
+      }
+    },
     components:{
-      GreenButton, WhiteButton,
+      GreenButton, WhiteButton, RegisterForm, LoginForm,
+    },
+    methods:{
+      showLogModal(){
+        this.isLogVisible = true;
+      },
+      closeLog(){
+        this.isLogVisible = false;
+      },
+
+      showRegModal(){
+        this.isRegVisible = true;
+      },
+      closeReg(){
+        this.isRegVisible = false;
+      }
     }
   }
 //1584 height
