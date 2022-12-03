@@ -17,13 +17,20 @@ module.exports = {
         container: '1584px'
       },
       margin: {
-        container: '0px auto'
+        container: '0px auto',
+        modal: '100px'
       },
       spacing: {
         modal: '50px'
       },
       boxShadow:{
         modal: '0px 0px 15px 0px'
+      },
+      width:{
+        modal: '560px'
+      },
+      height:{
+        modal: '670px'
       }
     },
   },

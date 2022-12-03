@@ -28,8 +28,6 @@
             async getPosts () {
                 const res = await axios.get('http://176.28.64.201:3437/get_queries')
                 this.posts = res.data
-                console.log(Object.keys(res).length)
-                console.dir(res)
             },
 
         }

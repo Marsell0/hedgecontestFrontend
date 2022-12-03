@@ -12,14 +12,6 @@
             </span>
         </div>
 
-        <div class="flex align-center justify-center">
-            <slot></slot>
-        </div>
-
-        <div class="flex align-center justify-center">
-            <green-button>Войти</green-button>
-        </div>
-
         <div >
             <form class="flex align-center justify-center flex-col" @submit.prevent="loginUser">
                 <div>

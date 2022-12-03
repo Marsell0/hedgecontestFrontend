@@ -1,6 +1,6 @@
 <template>
-    <div class="top-modal shadow-modal bg-white m-auto">
-        <div class="flex align-center justify-center">
+    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal">
+        <div class="flex align-center justify-center mt-modal">
             <span>
                 Зарегистрироваться
             </span>
@@ -30,6 +30,9 @@
                         <li v-for="error in errors" v-bind:key="error"> {{ error }}</li>
                     </ul>
                 </div>
+                <div v-if="isValidReg">
+                    <p>Вы успешно зарегистрировались!</p>
+                </div>
                 <div>
                     <green-button type="submit">Зарегистрироваться</green-button>
                 </div>
@@ -50,9 +53,11 @@
         data(){
             return {
                 email: null,
+                test: [],
                 password: null,
                 rePassword: null,
                 errors: [],
+                isValidReg: false,
             }
         },
         methods:{
@@ -61,6 +66,9 @@
             },
             checkForm(){
                 this.errors = [];
+                if(!this.isEmailTrue(this.email)){
+                    this.errors.push("Пользователь с таким email уже зарегистрирован")
+                }
 
                 if(this.validEmail(this.email)){
                     this.errors.push("Введите корректный email")
@@ -81,9 +89,7 @@
                 if(!this.errors.length){
                     return true
                 }
-                else{
-                    return false
-                }
+                return false
             },
             createUser(){
                 if(this.checkForm()){
@@ -91,12 +97,24 @@
                         "username": this.email,
                         "password": this.password
                     }
+                    this.isValidReg = true
                     axios.post('http://176.28.64.201:3437/registration', userData)
+                    setTimeout(5000)
+                    this.closeReg()
                 }
             },
-            validEmail: function (email) {
+            validEmail(email) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(email);
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+            },
+            async isEmailTrue(email){
+                const res = await axios.get(`http://176.28.64.201:3437/get_user/${email}`)
+                this.test = res.data
+                if (this.test.email != this.email || this.test.result){
+
+                    return true;
+                }
+                return false;
             }
         }
     }    
