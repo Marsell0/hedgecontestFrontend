@@ -23,8 +23,10 @@
                 <div>
                     <input type="password" placeholder="Подтверждение пароля" v-model="rePassword" />
                 </div>
-                <div>
+                <div v-if="errors.length">
+
                     <ul>
+                        Исправьте данные ошибки
                         <li v-for="error in errors" v-bind:key="error"> {{ error }}</li>
                     </ul>
                 </div>
@@ -60,7 +62,9 @@
             checkForm(){
                 this.errors = [];
 
-                this.validEmail(this.email)
+                if(this.validEmail(this.email)){
+                    this.errors.push("Введите корректный email")
+                }
                 
                 if(!this.email){
                     this.errors.push("Необходимо заполнить поле Email")
@@ -74,14 +78,21 @@
                 if (this.password != this.rePassword){
                     this.errors.push("Пароли не совпадают")
                 }
+                if(!this.errors.length){
+                    return true
+                }
+                else{
+                    return false
+                }
             },
             createUser(){
-                this.checkForm()
-                const userData = {
-                    "username": this.email,
-                    "password": this.password
+                if(this.checkForm()){
+                    const userData = {
+                        "username": this.email,
+                        "password": this.password
+                    }
+                    axios.post('http://176.28.64.201:3437/registration', userData)
                 }
-                axios.post('http://176.28.64.201:3437/registration', userData)
             },
             validEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
