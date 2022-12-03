@@ -22,7 +22,7 @@
         </nav>
       
         <div v-if="(getCookie('isAuth') == 1)">
-          <white-button>Выход</white-button>
+          <white-button @click="logOut">Выход</white-button>
         </div>
         <div v-else>
           <white-button
@@ -56,7 +56,6 @@
   import WhiteButton from '@/components/WhiteButton.vue'
   import RegisterForm from '@/components/RegisterForm.vue';
   import LoginForm from '@/components/LoginForm.vue';
-  import data from "@/global.js"
 
   export default {
     data(){
@@ -69,6 +68,10 @@
       GreenButton, WhiteButton, RegisterForm, LoginForm,
     },
     methods:{
+      logOut(){
+        document.cookie = 'isAuth=0; role=guest ;expires=-1';
+        location.reload()
+      },
       getCookie(name) {
         let matches = document.cookie.match(new RegExp(
           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

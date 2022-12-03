@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid">
+    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid inset-0">
         <div class="flex align-center justify-center mt-modal">
             <span class="text-modalHeader">
                 Регистрация
