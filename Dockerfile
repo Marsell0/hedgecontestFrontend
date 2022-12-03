@@ -1,4 +1,6 @@
-FROM vue:latest
+FROM node:lts-alpine
+
+RUN npm install -g @vue/cli
 
 RUN mkdir frontend/
 COPY . frontend/
