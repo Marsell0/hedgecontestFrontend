@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p class="text-3xl font-bold underline">Hello World!</p>
+    <p class="text-3xl font-bold underline">HomeView</p>
   </div>
 </template>
 
