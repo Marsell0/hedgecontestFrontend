@@ -31,6 +31,9 @@ module.exports = {
       },
       height:{
         modal: '670px'
+      },
+      fontSize:{
+        modalHeader: '50px'
       }
     },
   },

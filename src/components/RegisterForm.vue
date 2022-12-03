@@ -1,8 +1,8 @@
 <template>
-    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal">
+    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid">
         <div class="flex align-center justify-center mt-modal">
-            <span>
-                Зарегистрироваться
+            <span class="text-modalHeader">
+                Регистрация
             </span>
 
             <span
