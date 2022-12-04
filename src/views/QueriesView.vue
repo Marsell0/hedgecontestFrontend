@@ -1,28 +1,36 @@
 <template>
-    <div class="mt-16">
-        <green-button 
-            @click="getPosts" 
-            class="bg-main_green hover:bg-hover_m_green"
-        > Получить заявки
-        </green-button>
-        <ul v-for="post in posts" v-bind:key="post.id">
-            <li class="bold">{{ post.title_work }}</li>
-        </ul>
+    <div class="mt-16" @prevent="getPosts">
+        <div class="text-modalHeader mb-5">
+                Список заявок
+        </div>
+        <!-- <div>
+            <green-button 
+                @click="getPosts" 
+                class="bg-main_green hover:bg-hover_m_green"
+                > Получить заявки
+            </green-button>
+        </div> -->
+            <query-item v-bind:posts="posts"></query-item>
+
     </div>
 </template>
 
 <script>
-    import GreenButton from '../components/GreenButton.vue'
+    import GreenButton from '@/components/GreenButton.vue'
+    import QueryItem from '@/components/QueryItem.vue'
     import axios from 'axios'
 
     export default {
         components:{
-            GreenButton,
+            GreenButton, QueryItem
         },
         data () {
             return{
                 posts: [],
             }
+        },
+        mounted(){
+            this.getPosts()
         },
         methods: {
             async getPosts () {

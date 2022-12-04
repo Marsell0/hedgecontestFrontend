@@ -9,7 +9,8 @@ module.exports = {
         main_green: '#717D70',
         hover_m_green: '#717D80',
         bg_color: '#F5F5F5',
-        border_input: '#b3b3b3'
+        border_input: '#b3b3b3',
+        hover_white: '#b3b9ba'
       },
       maxHeight:{
         header: '70px',
@@ -40,7 +41,8 @@ module.exports = {
       },
       flex:{
         main: '1 0 auto',
-        footer: '0 0 auto'
+        footer: '0 0 auto',
+        full_width: '1'
       }
     },
   },

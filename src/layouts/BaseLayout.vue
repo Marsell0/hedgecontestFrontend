@@ -27,6 +27,7 @@
         <div v-else>
           <white-button
            @click="showLogModal"
+           class="ml-1"
           >
             Войти
           </white-button>
