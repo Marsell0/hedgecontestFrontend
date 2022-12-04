@@ -120,7 +120,7 @@
                     this.errors.push("Прикрепите работу")
                 }
             },
-            createQuery(){
+            async createQuery(){
                 this.checkQuery()
                 if(!this.errors.length){
                     const queryData={
@@ -132,13 +132,14 @@
                         "annotation": "string",
                         "file": this.file
                     }
-                    axios.post('http://176.28.64.201:3437/create_query', 
+                    const res = await axios.post('http://176.28.64.201:3437/create_query', 
                                         queryData, {
                                             headers: 
                                             {
                                                 "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
                                             }
                                         })
+                    console.log(res.data)
                     this.isCreate = true;
                                         
                 }

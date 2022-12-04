@@ -3,16 +3,19 @@
         <div class="text-modalHeader mb-5">
                 Список заявок
         </div>
-        <!-- <div>
-            <green-button 
-                @click="getPosts" 
-                class="bg-main_green hover:bg-hover_m_green"
-                > Получить заявки
-            </green-button>
-        </div> -->
-            <query-item v-bind:posts="posts"></query-item>
-
+        <p>admin</p>
+        <query-item v-bind:posts="posts"></query-item>
     </div>
+    <!-- <div @prevent="getPosts" v-else-if="getCookie('role') == 'expert'">
+        <div class="text-modalHeader mb-5">
+                Список заявок
+        </div>
+        <p>expert</p>
+        <query-item v-bind:posts="posts"></query-item>
+    </div>
+    <div class="text-modalHeader mb-5" v-else>
+        Доступ запрещен
+    </div> -->
 </template>
 
 <script>
@@ -33,9 +36,21 @@
             this.getPosts()
         },
         methods: {
+            getCookie(name) {
+                let matches = document.cookie.match(new RegExp(
+                                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+            },
             async getPosts () {
-                const res = await axios.get('http://176.28.64.201:3437/get_queries')
+                const res = await axios.get('http://176.28.64.201:3437/get_queries', {
+                                            headers: 
+                                            {
+                                                "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
+                                            }
+                                        })
                 this.posts = res.data
+                console.log(res.data)
             },
 
         }

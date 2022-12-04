@@ -7,13 +7,13 @@
         <div>
             <form class="flex items-center justify-center flex-col m-container" @submit.prevent="setDeadlines">
                 <div>
-                    <white-label>Приём заявок</white-label>
+                    <white-label>Ожидается запуск</white-label>
                     <input
                         class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                         type="date" id="wait" placeholder="ФИО*" v-model="waiting" />
                 </div>
                 <div>
-                    <white-label>Ожидается запуск</white-label>
+                    <white-label>Приём заявок</white-label>
                     <input 
                         class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                         type="date" id="accept" placeholder="Должность*" v-model="receiving" />
@@ -45,6 +45,7 @@
     import WhiteLabel from '@/components/WhiteLabel.vue';
     import GreenButton from '@/components/GreenButton.vue';
     import WhiteButton from '@/components/WhiteButton.vue';
+    import axios from 'axios';
 
     export default{
         components:{
@@ -66,6 +67,7 @@
                     "expertise": this.expertise,
                     "finishing": this.finishing
                 }
+                console.log(this.waiting)
                 const res = await axios.post('http://176.28.64.201:3437/set_deadlines', stepsData, {
                                             headers: 
                                             {

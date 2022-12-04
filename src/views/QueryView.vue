@@ -41,7 +41,12 @@ export default {
     },
     methods:{
         async getInfoAboutQuery(){
-            const res = await axios.get(`http://176.28.64.201:3437/get_query_by_id/${this.$route.params.id}`)
+            const res = await axios.get(`http://176.28.64.201:3437/get_query_by_id/${this.$route.params.id}`, {
+                                            headers: 
+                                            {
+                                                "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
+                                            }
+                                        })
             this.post = res.data
             console.log(this.post.file)
         },

@@ -1,8 +1,8 @@
 <template>
   <div class="main_block mt-16 p-4 bg-white flex-full_width ml-auto mr-auto flex-col">
     <div>
-      <white-label>step name</white-label>
-      <white-label>step deadline</white-label>
+      <white-label>{{ stepname }}</white-label>
+      <white-label>{{ stepdate }}</white-label>
     </div>
     <div>
       <div>
@@ -25,10 +25,32 @@
 // @ is an alias to /src
   import WhiteButton from '@/components/WhiteButton.vue';
   import WhiteLabel from '@/components/WhiteLabel.vue';
+  import axios from 'axios';
 
   export default{
+    mounted(){
+      this.getStep()
+      this.getStepDate()
+    },
     components:{
       WhiteButton, WhiteLabel
+    },
+    data(){
+      return{
+        stepname: null,
+        stepdate: null
+      }
+    },
+    methods:{
+      async getStep(){
+        const res = await axios.get('http://176.28.64.201:3437/get_status')
+        this.stepname = res.data.result
+        console.log(this.stepname)
+      },
+      async getStepDate(){
+        const res = await axios.get('http://176.28.64.201:3437/get_deadlines')
+        this.stepdate = res.data
+      },
     }
   }
 </script>
