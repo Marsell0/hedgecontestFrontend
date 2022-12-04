@@ -62,7 +62,7 @@ export default {
                                             }
                                         })
             this.post = res.data
-            console.log(post)
+            console.log(((((document.cookie).split(";"))[2]).split("="))[1])
         },
         getCookie(name) {
                 let matches = document.cookie.match(new RegExp(
@@ -88,6 +88,7 @@ export default {
                                                 "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
                                             }
                                         })
+            console.log(this.post.id)
             console.log(res.data)
         }
     }

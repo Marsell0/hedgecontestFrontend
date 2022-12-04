@@ -2,7 +2,6 @@
   <div class="main_block mt-16 p-4 bg-white flex-full_width ml-auto mr-auto flex-col">
     <div>
       <white-label>{{ stepname }}</white-label>
-      <white-label>{{ stepdate }}</white-label>
     </div>
     <div>
       <div>

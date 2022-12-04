@@ -9,7 +9,7 @@
                     {{ post.full_name }}
                 </div>
                 <div class="text-2xl">
-                    {{ post.topic_work }}
+                    {{ posts.topic_work }}
                 </div>
             </div>
             <white-button @click="$router.push(`/query/${post.id}`)"><router-link to="/query/:id">Перейти к заявке</router-link></white-button>
