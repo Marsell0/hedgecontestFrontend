@@ -54,6 +54,7 @@
                 password: null,
                 userData: [],
                 errors: [],
+                data: []
             }
         },
         methods:{
@@ -90,11 +91,11 @@
                         }
                     const res = await axios.post("http://176.28.64.201:3437/login", this.userData)
                     this.resData = res.data
-                    console.log(res.data)
+                    console.log(res.data.access_token)
                     if (res.data != null){
-                        data = this.resData.access_token
+                        this.data = this.resData.access_token
                         //data = ((this.parseJwt(data).sub).split(':'))[1]
-                        document.cookie = `role=${((this.parseJwt(data).sub).split(':'))[1]}`
+                        document.cookie = `role=${((this.parseJwt(this.data).sub).split(':'))[1]}`
 
                         document.cookie = `isAuth=1`
                         document.cookie = `token=Bearer ${data}`

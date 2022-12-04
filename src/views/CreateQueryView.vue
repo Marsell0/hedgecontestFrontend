@@ -84,7 +84,7 @@
                 console.log(this.$refs.file.files[0])
                 this.file = this.$refs.file.files[0];
                 try{
-                    const res = await axios.post('http://176.28.64.201:3437/upload_file', {"file": this.file}, {
+                    const res = await axios.post(`http://176.28.64.201:3437/upload_file`, {"file": this.file}, {
                                             headers: 
                                             {
                                                 "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
