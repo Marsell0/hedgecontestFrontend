@@ -16,7 +16,7 @@
         <nav>
           <ul class="flex justify-between align-center text-white">
             <li class="mr-40"><router-link to="/">Главная</router-link></li>
-            <li v-if="getCookie('role') == 'user'" class="mr-40"><router-link to="/queries">Queries</router-link></li>
+            <li v-if="getCookie('role') == 'expert' || getCookie('role') == 'admin'" class="mr-40"><router-link to="/queries">Queries</router-link></li>
             <li class="mr-40" v-if="(getCookie('role') == 'user')"><router-link to="/create_query">Отправить заявку</router-link></li>  
           </ul>
         </nav>

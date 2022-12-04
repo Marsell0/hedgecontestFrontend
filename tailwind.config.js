@@ -19,7 +19,9 @@ module.exports = {
         header: '40px',
       },
       maxWidth:{
-        container: '1584px'
+        container: '1584px',
+        mainblock_header: '650px',
+        mainblock_subtitle: '500px'    
       },
       margin: {
         container: '0px auto',
