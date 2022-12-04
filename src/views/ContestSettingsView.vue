@@ -67,7 +67,7 @@
                     "expertise": this.expertise,
                     "finishing": this.finishing
                 }
-                console.log(this.waiting)
+                console.log(document.cookie)
                 const res = await axios.post('http://176.28.64.201:3437/set_deadlines', stepsData, {
                                             headers: 
                                             {

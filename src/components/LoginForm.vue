@@ -41,7 +41,6 @@
 <script>
     import GreenButton from './GreenButton.vue';
     import axios from 'axios';
-    import data from '@/global.js'
 
     export default {
         components:{
@@ -58,14 +57,6 @@
             }
         },
         methods:{
-            parseJwt (token) {
-                var base64Url = token.split('.')[1];
-                var base64 = decodeURIComponent(atob(base64Url).split('').map(function(c) {
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                    }).join(''));
-
-                 return JSON.parse(base64);
-            },
             closeLog() {
                 this.$emit('closeLog')
             },
@@ -83,6 +74,13 @@
                 return false
 
             },
+            parseJwt (token) {
+                var base64Url = token.split('.')[1];
+                var base64 = decodeURIComponent(atob(base64Url).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+                 return JSON.parse(base64);
+            },
             async loginUser(){
                 if(this.checkLogin()){
                     this.userData = {
@@ -96,9 +94,9 @@
                         this.data = this.resData.access_token
                         //data = ((this.parseJwt(data).sub).split(':'))[1]
                         document.cookie = `role=${((this.parseJwt(this.data).sub).split(':'))[1]}`
-
+                        
                         document.cookie = `isAuth=1`
-                        document.cookie = `token=Bearer ${data}`
+                        document.cookie = `token=Bearer ${this.data}`
                         this.closeLog()
                         return true;
                     }

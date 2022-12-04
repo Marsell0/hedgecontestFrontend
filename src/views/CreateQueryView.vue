@@ -87,11 +87,11 @@
                     const res = await axios.post(`http://176.28.64.201:3437/upload_file`, {"file": this.file}, {
                                             headers: 
                                             {
-                                                "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
+                                                'Authorization': ((((document.cookie).split(";"))[2]).split("="))[1],
                                                 'content-Type': 'multipart/form-data'
                                             }
                                         })
-                    console.log(((((document.cookie).split(";"))[2]).split("="))[1])
+                    console.log(((document.cookie).split(";"))[2])
                     console.log(res.data)
                     this.file = res.data.filename
                 }
