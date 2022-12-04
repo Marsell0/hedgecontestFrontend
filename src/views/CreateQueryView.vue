@@ -91,8 +91,9 @@
                                                 'content-Type': 'multipart/form-data'
                                             }
                                         })
-                    console.log(res.data.name)
-                    this.file = res.data.name
+                    console.log(((((document.cookie).split(";"))[2]).split("="))[1])
+                    console.log(res.data)
+                    this.file = res.data.filename
                 }
                 catch (e){
                     this.errors.push(e.name)

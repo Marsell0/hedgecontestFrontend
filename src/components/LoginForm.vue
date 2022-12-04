@@ -90,6 +90,7 @@
                         }
                     const res = await axios.post("http://176.28.64.201:3437/login", this.userData)
                     this.resData = res.data
+                    console.log(res.data)
                     if (res.data != null){
                         data = this.resData.access_token
                         //data = ((this.parseJwt(data).sub).split(':'))[1]

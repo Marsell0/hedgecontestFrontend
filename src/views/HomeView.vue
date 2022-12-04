@@ -1,8 +1,8 @@
 <template>
   <div class="main_block mt-16 p-4 bg-white flex-full_width ml-auto mr-auto flex-col">
     <div>
-      <white-button>step name</white-button>
-      <white-button>step deadline</white-button>
+      <white-label>step name</white-label>
+      <white-label>step deadline</white-label>
     </div>
     <div>
       <div>
@@ -24,10 +24,11 @@
 <script>
 // @ is an alias to /src
   import WhiteButton from '@/components/WhiteButton.vue';
+  import WhiteLabel from '@/components/WhiteLabel.vue';
 
   export default{
     components:{
-      WhiteButton,
+      WhiteButton, WhiteLabel
     }
   }
 </script>

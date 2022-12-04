@@ -17,7 +17,8 @@
           <ul class="flex justify-between align-center text-white">
             <li class="mr-40"><router-link to="/">Главная</router-link></li>
             <li v-if="getCookie('role') == 'expert' || getCookie('role') == 'admin'" class="mr-40"><router-link to="/queries">Queries</router-link></li>
-            <li class="mr-40" v-if="(getCookie('role') == 'user')"><router-link to="/create_query">Отправить заявку</router-link></li>  
+            <li class="mr-40" v-if="(getCookie('role') == 'user')"><router-link to="/create_query">Отправить заявку</router-link></li>
+            <li class="mr-40" v-if="(getCookie('role') == 'admin')"><router-link to="/contest_settings">Установить дедлайны</router-link></li>  
           </ul>
         </nav>
       
@@ -55,6 +56,7 @@
   import WhiteButton from '@/components/WhiteButton.vue'
   import RegisterForm from '@/components/RegisterForm.vue';
   import LoginForm from '@/components/LoginForm.vue';
+  import WhiteLabel from '@/components/WhiteLabel.vue';
 
   export default {
     data(){
@@ -64,7 +66,7 @@
       }
     },
     components:{
-      GreenButton, WhiteButton, RegisterForm, LoginForm,
+      GreenButton, WhiteButton, RegisterForm, LoginForm, WhiteLabel
     },
     methods:{
       logOut(){

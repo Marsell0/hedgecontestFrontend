@@ -23,6 +23,12 @@ const routes = [
     name: 'query',
     meta: {layout: 'base'},
     component: () => import('@/views/QueryView.vue')
+  },
+  {
+    path: '/contest_settings',
+    name: 'conSet',
+    meta: {layout: 'base'},
+    component: () => import('@/views/ContestSettingsView.vue')
   }
 ]
 
