@@ -1,46 +1,53 @@
 <template>
     <div class="mt-16">
         <div >
-            <span class="text-modalHeader">
+            <span class="text-modalHeader mb-5">
                 Оставить заявку
             </span>
-            <form class="flex align-center justify-center flex-col m-container" @submit.prevent="">
+            <form class="flex align-center justify-center flex-col m-container" @submit.prevent="createQuery">
                 <div>
                     <input
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                     type="text" placeholder="ФИО*" v-model="full_name" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                     type="text" placeholder="Должность*" v-model="post" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                     type="text" placeholder="Место работы*" v-model="job_place" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                     type="text" placeholder="Тема конкурсной работы*" v-model="topic_work" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mb-5 pl-1"
                     type="text" placeholder="Заголовок конкурсной работы*" v-model="title_work" />
                 </div>
-                <div v-if="showDropFile">
+                <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
-                    type="file"
+                    class=" w-input h-input mb-5 pl-1"
+                    type="file" ref="file" v-on:change="uploadFile"
                     />
                 </div>
-                <div v-if="!showDropFile">
-                    <green-button type="submit">Далее</green-button>
+                <div>
+                    <p class="text-border_input mb-5">* - данные обязательны для заполнения</p>
                 </div>
-                <div v-else>
-                    <green-button type="submit">Отправить заявку</green-button>
+
+                <div v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <green-button class="m-auto block h-10" type="submit">Отправить заявку</green-button>
                 </div>
             </form>
         </div>
@@ -57,18 +64,61 @@
         },
         data(){
             return{
-                full_name: '',
-                post: '',
-                job_place: '',
-                topic_work: '',
-                title_work: '',
-                annotation: '',
-                file: '',
-                showDropFile: false
+                full_name: null,
+                post: null,
+                job_place: null,
+                topic_work: null,
+                title_work: null,
+                annotation: null,
+                file: null,
+                errors: []
             }
         },
         methods: {
+            uploadFile(){
+                console.log(this.$refs.file.files[0])
+                this.file = this.$refs.file.files[0].name;
+            },
+            checkQuery(){
+                this.errors = []
+                if (!this.full_name){
+                    this.errors.push("Заполните поле ФИО")
+                }
+                if (!this.post){
+                    this.errors.push("Заполните поле Должность")
+                }
+                if (!this.job_place){
+                    this.errors.push("Заполните поле Место работы")
+                }
+                if (!this.topic_work){
+                    this.errors.push("Заполните поле Тема конкурсной работы")
+                }
+                if (!this.title_work){
+                    this.errors.push("Заполните поле Заголовок конкурсной работы")
+                }
+                if (!this.file){
+                    this.errors.push("Прикрепите работу")
+                }
+            },
             createQuery(){
+                console.log(this.file)
+                this.checkQuery()
+                if(!this.errors.length){
+                    const queryData={
+                        "full_name": this.full_name,
+                        "post": this.post,
+                        "job_place": this.job_place,
+                        "topic_work": this.topic_work,
+                        "title_work": this.title_work,
+                        "annotation": "string",
+                        "file": this.file
+                    }
+                    console.log("отправка")
+                    const res = axios.post('http://176.28.64.201:3437/create_query', 
+                                        queryData).catch(function (error) {
+                                            console.log(error.toJSON());
+                                        });
+                }
             }
         }
     }

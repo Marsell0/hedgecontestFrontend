@@ -22,7 +22,7 @@
         </nav>
       
         <div v-if="(getCookie('isAuth') == 1)">
-          <white-button @click="logOut">Выход</white-button>
+          <white-button @click="logOut"><router-link to="/">Выход</router-link></white-button>
         </div>
         <div v-else>
           <white-button
@@ -45,9 +45,9 @@
       </div>
     </main>
 
-    <footer class="root bg-main_green">
+    <!-- <footer class="root bg-main_green">
       footer
-    </footer>
+    </footer> -->
   </div>    
 </template>
 
@@ -69,7 +69,8 @@
     },
     methods:{
       logOut(){
-        document.cookie = 'isAuth=0; role=guest ;expires=-1';
+        document.cookie = 'role=guest';
+        document.cookie = 'isAuth=0';
         location.reload()
       },
       getCookie(name) {
