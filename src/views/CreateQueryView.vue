@@ -91,8 +91,8 @@
                                                 'content-Type': 'multipart/form-data'
                                             }
                                         })
-                    console.log(res.data.filename)
-                    this.file = res.data.filename
+                    console.log(res.data.name)
+                    this.file = res.data.name
                 }
                 catch (e){
                     this.errors.push(e.name)

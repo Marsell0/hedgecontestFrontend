@@ -11,7 +11,7 @@
                 {{ post.topic_work }}
             </div>
         </div>
-        <white-button><router-link to="/query">Перейти к заявке</router-link></white-button>
+        <white-button @click="$router.push(`/query/${post.id}`)"><router-link to="/query/:id">Перейти к заявке</router-link></white-button>
     </div>    
 </template>
 

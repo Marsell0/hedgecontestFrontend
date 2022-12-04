@@ -19,7 +19,7 @@ const routes = [
     component: () => import('../views/CreateQueryView.vue')
   },
   {
-    path: '/query',
+    path: '/query/:id',
     name: 'query',
     meta: {layout: 'base'},
     component: () => import('@/views/QueryView.vue')

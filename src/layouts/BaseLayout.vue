@@ -12,12 +12,12 @@
     />
 
     <header class=" absolute top-0 left-0 z-100 px-0 py-15 bg-main_green flex min-h-header min-w-full">
-      <div class="_container">
+      <div class="_container p-4">
         <nav>
           <ul class="flex justify-between align-center text-white">
-            <li class="mr-80"><router-link to="/">Главная</router-link></li>
-            <li v-if="getCookie('role') == 'user'" class="mr-80"><router-link to="/queries">Queries</router-link></li>
-            <li v-if="(getCookie('role') == 'user')"><router-link to="/create_query">Отправить заявку</router-link></li>  
+            <li class="mr-40"><router-link to="/">Главная</router-link></li>
+            <li v-if="getCookie('role') == 'user'" class="mr-40"><router-link to="/queries">Queries</router-link></li>
+            <li class="mr-40" v-if="(getCookie('role') == 'user')"><router-link to="/create_query">Отправить заявку</router-link></li>  
           </ul>
         </nav>
       
@@ -27,11 +27,11 @@
         <div v-else>
           <white-button
            @click="showLogModal"
-           class="ml-4"
           >
             Войти
           </white-button>
           <green-button
+          class="ml-10"
            @click="showRegModal"
           >
             Регистрация
@@ -40,7 +40,7 @@
       </div>
     </header>
 
-    <main class="_container">
+    <main class="_container flex-full_width">
       <router-view></router-view>
     </main>
 
@@ -96,14 +96,16 @@
   }
 //1584 height
 </script>
-<style scoped>
-  .root{
+<style>
+  /* .root{
     min-height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-  }
+    border: 2px solid red;
+  } */
   ._container{
+    justify-content: center;
     max-width: 1533px;
     max-height: 4320px;
     margin: 0px auto;

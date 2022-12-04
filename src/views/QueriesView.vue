@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-16" @prevent="getPosts">
+    <div class="mt-16 w-full p-4" @prevent="getPosts">
         <div class="text-modalHeader mb-5">
                 Список заявок
         </div>
