@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg_color flex flex-col min-h-full">
+  <div class="root bg-bg_color ">
 
     <login-form 
     v-if="isLogVisible"
@@ -11,8 +11,8 @@
     @closeReg="closeReg" 
     />
 
-    <header class="root absolute top-0 left-0 z-100 px-0 py-15 bg-main_green flex max-h-header min-w-full">
-      <div class="root">
+    <header class=" absolute top-0 left-0 z-100 px-0 py-15 bg-main_green flex min-h-header min-w-full">
+      <div class="_container">
         <nav>
           <ul class="flex justify-between align-center text-white">
             <li class="mr-80"><router-link to="/">Главная</router-link></li>
@@ -27,7 +27,7 @@
         <div v-else>
           <white-button
            @click="showLogModal"
-           class="ml-1"
+           class="ml-4"
           >
             Войти
           </white-button>
@@ -40,13 +40,11 @@
       </div>
     </header>
 
-    <main class="root mt-16 flex-auto">
-      <div>
-        <router-view></router-view>
-      </div>
+    <main class="_container">
+      <router-view></router-view>
     </main>
 
-    <!-- <footer class="root bg-main_green">
+    <!-- <footer class="_container bg-main_green mt-20">
       footer
     </footer> -->
   </div>    
@@ -70,9 +68,10 @@
     },
     methods:{
       logOut(){
+        location.reload()
         document.cookie = 'role=guest';
         document.cookie = 'isAuth=0';
-        location.reload()
+        document.cookie = 'token=0';
       },
       getCookie(name) {
         let matches = document.cookie.match(new RegExp(
@@ -99,8 +98,15 @@
 </script>
 <style scoped>
   .root{
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  ._container{
     max-width: 1533px;
+    max-height: 4320px;
     margin: 0px auto;
     display: flex;
-  }
+}
 </style>

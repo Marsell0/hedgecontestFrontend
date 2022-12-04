@@ -46,6 +46,10 @@
                     </ul>
                 </div>
 
+                <div v-if="isCreate">
+                    <p>Заявка успешно создана</p>
+                </div>
+
                 <div>
                     <green-button class="m-auto block h-10" type="submit">Отправить заявку</green-button>
                 </div>
@@ -71,13 +75,28 @@
                 title_work: null,
                 annotation: null,
                 file: null,
-                errors: []
+                errors: [],
+                isCreate: false
             }
         },
         methods: {
-            uploadFile(){
+            async uploadFile(){
                 console.log(this.$refs.file.files[0])
-                this.file = this.$refs.file.files[0].name;
+                this.file = this.$refs.file.files[0];
+                try{
+                    const res = await axios.post('http://176.28.64.201:3437/upload_file', {"file": this.file}, {
+                                            headers: 
+                                            {
+                                                "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
+                                                'content-Type': 'multipart/form-data'
+                                            }
+                                        })
+                    console.log(res.data.filename)
+                    this.file = res.data.filename
+                }
+                catch (e){
+                    this.errors.push(e.name)
+                }
             },
             checkQuery(){
                 this.errors = []
@@ -101,7 +120,6 @@
                 }
             },
             createQuery(){
-                console.log(this.file)
                 this.checkQuery()
                 if(!this.errors.length){
                     const queryData={
@@ -113,11 +131,15 @@
                         "annotation": "string",
                         "file": this.file
                     }
-                    console.log("отправка")
-                    const res = axios.post('http://176.28.64.201:3437/create_query', 
-                                        queryData).catch(function (error) {
-                                            console.log(error.toJSON());
-                                        });
+                    axios.post('http://176.28.64.201:3437/create_query', 
+                                        queryData, {
+                                            headers: 
+                                            {
+                                                "Authorization": ((((document.cookie).split(";"))[2]).split("="))[1],
+                                            }
+                                        })
+                    this.isCreate = true;
+                                        
                 }
             }
         }

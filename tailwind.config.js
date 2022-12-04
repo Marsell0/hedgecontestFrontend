@@ -15,12 +15,15 @@ module.exports = {
       maxHeight:{
         header: '70px',
       },
+      minHeight:{
+        header: '40px',
+      },
       maxWidth:{
         container: '1584px'
       },
       margin: {
         container: '0px auto',
-        modal: '100px'
+        modal: '50px'
       },
       spacing: {
         modal: '50px'
@@ -33,7 +36,7 @@ module.exports = {
         input: '487px'
       },
       height:{
-        modal: '670px',
+        modal: '470px',
         input: '30px'
       },
       fontSize:{

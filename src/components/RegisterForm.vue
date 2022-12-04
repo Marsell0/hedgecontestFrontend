@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid inset-0">
+    <div class="absolute mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid inset-0 flex flex-col items-center">
         <div class="flex align-center justify-center mt-modal">
             <span class="text-modalHeader">
                 Регистрация
@@ -16,17 +16,17 @@
             <form class="flex align-center justify-center flex-col m-container" @submit.prevent="createUser">
                 <div>
                     <input
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mt-4 p-1"
                     type="text" placeholder="Email" v-model="email" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mt-4 p-1"
                     type="password" placeholder="Пароль" v-model="password" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mt-4 p-1"
                     type="password" placeholder="Подтверждение пароля" v-model="rePassword" />
                 </div>
                 <div v-if="errors.length">
@@ -40,7 +40,7 @@
                     <p>Вы успешно зарегистрировались!</p>
                 </div>
                 <div>
-                    <green-button type="submit">Зарегистрироваться</green-button>
+                    <green-button class="mt-4 p-1" type="submit"><span>Зарегистрироваться</span></green-button>
                 </div>
             </form>
         </div>

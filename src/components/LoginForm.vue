@@ -1,5 +1,5 @@
 <template>
-    <div class=" mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid">
+    <div class="absolute mt-modal top-modal shadow-modal bg-white m-auto w-modal h-modal rounded-3xl border-solid inset-0 flex flex-col items-center">
         <div class="flex align-center justify-center mt-modal">
             <span class="text-modalHeader">
                 Вход
@@ -16,12 +16,12 @@
             <form class="flex align-center justify-center flex-col m-container" @submit.prevent="loginUser">
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mt-4 p-1"
                     type="text" placeholder="Email" v-model="email" />
                 </div>
                 <div>
                     <input 
-                    class="border-2 border-border_input rounded-xl w-input h-input"
+                    class="border-2 border-border_input rounded-xl w-input h-input mt-4 p-1"
                     type="password" placeholder="Пароль" v-model="password" />
                 </div>
                 <div v-if="errors.length">
@@ -30,7 +30,7 @@
                     </ul>
                 </div>
                 <div>
-                    <green-button type="submit">Войти</green-button>
+                    <green-button class="mt-4 p-1" type="submit">Войти</green-button>
                 </div>
             </form>
 
@@ -96,7 +96,7 @@
                         document.cookie = `role=${((this.parseJwt(data).sub).split(':'))[1]}`
 
                         document.cookie = `isAuth=1`
-
+                        document.cookie = `token=Bearer ${data}`
                         this.closeLog()
                         return true;
                     }

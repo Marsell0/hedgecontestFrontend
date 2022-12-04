@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="mt-16">
         <div>
             <p>ФИО</p>
             <p>Название</p>
-            <white-button></white-button>
-            <green-button></green-button>
+            <white-button>Печатное издание</white-button>
+            <green-button>Скачать</green-button>
         </div>
     </div>
 </template>
